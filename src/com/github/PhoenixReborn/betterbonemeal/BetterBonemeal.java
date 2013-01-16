@@ -33,7 +33,7 @@ public class BetterBonemeal extends JavaPlugin implements Listener
 		{
 			if(e.getPlayer().hasPermission("betterbonemeal.use") || e.getPlayer().isOp()) //Checks if player has permission or is OP.
 			{
-				if(e.getItem().getData().getData() == 15) //Checks to see if the item in hand is bonemeal.
+				if(e.getItem() != null && e.getItem().getData().getData() == 15) //Checks to see if the item in hand is bonemeal.
 				{
 					if(e.getClickedBlock().getType().equals(Material.SUGAR_CANE_BLOCK)) //Checks if player is right clicking on sugar.
 					{
@@ -54,7 +54,14 @@ public class BetterBonemeal extends JavaPlugin implements Listener
 						}
 						if(used == true)
 						{
-							e.getItem().setAmount(e.getItem().getAmount() - 1); //Remove 1 bonemeal from the players inventory.
+							if(e.getItem().getAmount() == 1)
+							{
+								e.getPlayer().setItemInHand(null);
+							}
+							else
+							{
+								e.getItem().setAmount(e.getItem().getAmount() - 1); //Remove 1 bonemeal from the players inventory.
+							}
 						}
 					}
 					
@@ -78,7 +85,14 @@ public class BetterBonemeal extends JavaPlugin implements Listener
 						}
 						if(used == true)
 						{
-							e.getItem().setAmount(e.getItem().getAmount() - 1);
+							if(e.getItem().getAmount() == 1)
+							{
+								e.getPlayer().setItemInHand(null);
+							}
+							else
+							{
+								e.getItem().setAmount(e.getItem().getAmount() - 1); //Remove 1 bonemeal from the players inventory.
+							}
 						}
 					}
 				}
